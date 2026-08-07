@@ -1,0 +1,40 @@
+name: Web UI CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'aegis-web/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'aegis-web/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: './aegis-web/package-lock.json'
+
+    - name: Install dependencies
+      working-directory: ./aegis-web
+      run: npm ci
+
+    - name: Check
+      working-directory: ./aegis-web
+      run: npm run check
+
+    - name: Build
+      working-directory: ./aegis-web
+      run: npm run build
+
+    - name: Test
+      working-directory: ./aegis-web
+      run: npm run test

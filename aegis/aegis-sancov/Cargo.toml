@@ -1,0 +1,10 @@
+[package]
+name = "aegis-sancov"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+aegis-core = { path = "../aegis-core" }
+libc = { workspace = true }
+tracing = { workspace = true }

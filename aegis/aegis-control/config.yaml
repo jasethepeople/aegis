@@ -1,0 +1,22 @@
+server:
+  host: "0.0.0.0"
+  port: 8080
+
+database:
+  host: "localhost"
+  port: 5432
+  name: "aegis"
+  user: "aegis"
+  password: ""
+  ssl_mode: "disable"
+
+messaging:
+  nats_url: "nats://localhost:4222"
+
+auth:
+  jwt_secret: "change-me-in-production"
+  token_expiry: "24h"
+
+logging:
+  level: "info"
+  format: "json"

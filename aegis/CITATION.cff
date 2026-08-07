@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software in your research, please cite it as below."
+title: "Aegis: A Production-Grade Coverage-Guided Fuzzing Platform"
+abstract: "Aegis is a modular, language-agnostic fuzzing platform designed for security research, vulnerability discovery, and software assurance. It implements coverage-guided fuzzing with deterministic mutation strategies, distributed orchestration, and multi-target support including binary, service, smart contract, and kernel-level fuzzing."
+type: software
+authors:
+  - family-names: "Aegis"
+    given-names: "Security Research Team"
+repository-code: "https://github.com/aegis-security/aegis"
+license: MIT
+keywords:
+  - fuzzing
+  - vulnerability-discovery
+  - coverage-guided-fuzzing
+  - security-testing
+  - software-assurance
+  - mutation-testing
+  - dynamic-analysis
+version: 0.4.0
+date-released: 2026-05-23

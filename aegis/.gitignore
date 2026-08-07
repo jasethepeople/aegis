@@ -1,0 +1,48 @@
+# Rust
+/target
+**/*.rs.bk
+Cargo.lock
+
+# Go
+*.exe
+*.dll
+*.so
+*.dylib
+bin/
+vendor/
+
+# Node.js
+node_modules/
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+coverage/
+*.log
+
+# Data
+corpus/
+crashes/
+seeds/
+*.bin
+
+# Docker
+*.env
+docker-compose.override.yml
+
+# Temporary
+tmp/
+temp/
+*.tmp

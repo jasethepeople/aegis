@@ -1,0 +1,17 @@
+[package]
+name = "aegis-engine"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+aegis-core = { path = "../aegis-core" }
+aegis-mutate = { path = "../aegis-mutate" }
+aegis-sancov = { path = "../aegis-sancov" }
+aegis-executor = { path = "../aegis-executor" }
+aegis-corpus = { path = "../aegis-corpus" }
+aegis-target = { path = "../aegis-target" }
+tokio = { workspace = true }
+tracing = { workspace = true }
+rand = { workspace = true }
+rand_chacha = { workspace = true }

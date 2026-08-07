@@ -1,0 +1,75 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: aegis
+      POSTGRES_PASSWORD: aegis
+      POSTGRES_DB: aegis
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./aegis-control/migrations:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aegis"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  nats:
+    image: nats:2.10-alpine
+    command: "--js --store_dir /data"
+    volumes:
+      - nats_data:/data
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+
+  aegis-server:
+    build:
+      context: ./aegis-control
+      dockerfile: Dockerfile.server
+    environment:
+      AEGIS_DB: "postgres://aegis:aegis@postgres:5432/aegis?sslmode=disable"
+      AEGIS_NATS: "nats://nats:4222"
+      AEGIS_JWT_SECRET: "production-secret-change-me"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - nats
+      - redis
+
+  aegis-worker:
+    build:
+      context: ./aegis-control
+      dockerfile: Dockerfile.worker
+    environment:
+      AEGIS_NATS: "nats://nats:4222"
+    depends_on:
+      - nats
+    deploy:
+      replicas: 2
+
+  aegis-web:
+    build:
+      context: ./aegis-web
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - aegis-server
+
+volumes:
+  postgres_data:
+  nats_data:
+  redis_data:

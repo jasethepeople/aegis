@@ -1,0 +1,13 @@
+[package]
+name = "aegis-executor"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+aegis-core = { path = "../aegis-core" }
+aegis-sancov = { path = "../aegis-sancov" }
+tokio = { workspace = true }
+tracing = { workspace = true }
+nix = { workspace = true }
+libc = { workspace = true }

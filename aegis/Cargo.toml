@@ -1,0 +1,29 @@
+[workspace]
+members = [
+    "aegis-core", "aegis-mutate", "aegis-sancov", "aegis-executor",
+    "aegis-corpus", "aegis-engine", "aegis-target", "aegis-cli", "aegis-advanced",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.4.0"
+edition = "2021"
+authors = ["Aegis Security Research <team@aegis.dev>"]
+license = "MIT OR Apache-2.0"
+rust-version = "1.78"
+
+[workspace.dependencies]
+thiserror = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.37", features = ["full"] }
+tracing = "0.1"
+rand = "0.8"
+rand_chacha = "0.3"
+sha2 = "0.10"
+hex = "0.4"
+uuid = { version = "1.8", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+parking_lot = "0.12"
+libc = "0.2"
+nix = { version = "0.28", features = ["process", "signal", "resource"] }
